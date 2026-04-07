@@ -1,10 +1,10 @@
 {
-  "name": "kuajing-ai-ogc",
+  "name": "clothing-store",
   "version": "0.1.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/awanawana/awanawana-KuaJingAIGC-OPC.git"
+    "url": "https://github.com/beishaoyun/awanawana-KuaJingAIGC-OPC.git"
   },
   "scripts": {
     "dev": "next dev",
