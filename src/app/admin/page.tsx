@@ -39,7 +39,7 @@ export default function AdminDashboard() {
     conversionRate: 3.89,
   });
   const [orders, setOrders] = useState(generateOrders());
-  const [currentOrderIndex, setCurrentOrderIndex] = useState(0);
+  const [_currentOrderIndex, _setCurrentOrderIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // 动态数据增长效果

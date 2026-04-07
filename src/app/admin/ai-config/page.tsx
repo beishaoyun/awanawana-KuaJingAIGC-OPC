@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Settings, Save, RotateCcw, TrendingUp, Users, DollarSign, Package, BarChart3, Search, Heart, Eye, ShoppingBag, Star, Target, Zap } from "lucide-react";
+import { Settings, Save, RotateCcw, BarChart3 } from "lucide-react";
 
 interface ScoreDimension {
   id: string;

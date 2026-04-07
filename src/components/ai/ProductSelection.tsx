@@ -25,7 +25,7 @@ export default function ProductSelection({ onNavigate }: ProductSelectionProps) 
     
     // 模拟 AI 分析
     setTimeout(() => {
-      const mockResults = aiProductSuggestions.map((product, i) => ({
+      const mockResults = aiProductSuggestions.map((product) => ({
         ...product,
         marketScore: Math.floor(Math.random() * 30) + 70,
         competitionScore: Math.floor(Math.random() * 40) + 30,

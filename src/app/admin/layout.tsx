@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { LayoutDashboard, ShoppingBag, Sparkles, Settings, LogOut, ChevronRight, Users, Sliders, ChevronDown, Package, Search, Database, BarChart3, Store, TrendingUp } from "lucide-react";
+import { LayoutDashboard, ShoppingBag, Sparkles, Users, Package, Search, Database, BarChart3, Store, TrendingUp, ChevronRight, ChevronDown, Sliders, Settings, LogOut } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "管理后台 | NEXUS 跨境电商",
@@ -28,10 +28,6 @@ const dataInsightItems = [
   { href: "/admin/ai?tab=competitor-stores", label: "竞品数据", icon: Database },
 ];
 
-const bottomNavItems = [
-  { href: "/admin/ai", label: "AI工具", icon: Sparkles },
-  { href: "/admin/ai-config", label: "选品配置", icon: Sliders },
-];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

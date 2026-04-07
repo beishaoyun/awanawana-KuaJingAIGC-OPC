@@ -234,7 +234,7 @@ export default function ProductPage() {
                 <Link key={p.id} href={`/product/${p.id}`}>
                   <div className="bg-card rounded-2xl overflow-hidden card-hover">
                     <div className="aspect-square image-zoom">
-                      <Image src={p.image} alt={p.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" className="w-full h-full object-cover" />
+                      <Image src={p.image} alt={p.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
                     </div>
                     <div className="p-4">
                       <h3 className="font-semibold mb-1">{p.name}</h3>

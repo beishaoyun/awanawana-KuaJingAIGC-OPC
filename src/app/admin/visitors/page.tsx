@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Users, TrendingUp, ShoppingBag, MapPin, Smartphone, Clock, DollarSign, Heart, Eye, Star, Globe, User, Activity } from "lucide-react";
+import { Users, TrendingUp, ShoppingBag, MapPin, Smartphone, Clock, DollarSign, Globe, User, Activity } from "lucide-react";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
 
 // 访客数据
@@ -402,7 +402,7 @@ export default function VisitorsPage() {
             { title: "新品提醒", desc: "新商品上架时自动推送", enabled: true, icon: "🆕" },
             { title: "促销通知", desc: "折扣活动开始时推送", enabled: true, icon: "🔥" },
             { title: "库存警告", desc: "热销商品库存不足时提醒", enabled: false, icon: "⚠️" },
-          ].map((notification, i) => (
+          ].map((notification) => (
             <div key={notification.title} className="flex items-center justify-between p-4 bg-background/50 rounded-xl">
               <div className="flex items-center gap-4">
                 <span className="text-2xl">{notification.icon}</span>

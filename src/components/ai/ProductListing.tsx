@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FileText, Image, Copy, Check, Sparkles, Zap } from "lucide-react";
 import { platformKeywords } from "@/lib/data";
@@ -11,32 +11,11 @@ interface Props {
   initialFeatures?: string;
 }
 
-export default function ProductListing({ 
-  initialProduct = "", 
+export default function ProductListing({
+  initialProduct = "",
   initialCategory = "Hoodies",
-  initialFeatures = "" 
+  initialFeatures = ""
 }: Props) {
-  const [form, setForm] = useState({
-    productName: initialProduct,
-    category: initialCategory,
-    features: initialFeatures,
-    keywords: ""
-  });
-  
-  const [generatedTitle, setGeneratedTitle] = useState("");
-  const [generatedDescription, setGeneratedDescription] = useState("");
-  const [bulletPoints, setBulletPoints] = useState<string[]>([]);
-  const [generatedImages, setGeneratedImages] = useState<(string | null)[]>([null, null, null, null, null]);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [copied, setCopied] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    if (initialProduct) {
-      const autoKeywords = getKeywordsByCategory(initialCategory);
-      setForm(prev => ({ ...prev, keywords: autoKeywords }));
-    }
-  }, [initialProduct, initialCategory]);
-
   const getKeywordsByCategory = (category: string): string => {
     const cat = category.toLowerCase();
     let keywords: string[] = [];
@@ -56,6 +35,20 @@ export default function ProductListing({
     const tiktokTags = platformKeywords.tiktok.slice(0, 2).map((t: KeywordData) => t.keyword);
     return [...keywords, ...tiktokTags].join(", ");
   };
+
+  const [form, setForm] = useState({
+    productName: initialProduct,
+    category: initialCategory,
+    features: initialFeatures,
+    keywords: getKeywordsByCategory(initialCategory)
+  });
+
+  const [generatedTitle, setGeneratedTitle] = useState("");
+  const [generatedDescription, setGeneratedDescription] = useState("");
+  const [bulletPoints, setBulletPoints] = useState<string[]>([]);
+  const [generatedImages, setGeneratedImages] = useState<(string | null)[]>([null, null, null, null, null]);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [copied, setCopied] = useState<Record<string, boolean>>({});
 
   const generateListing = () => {
     if (!form.productName.trim()) return;
@@ -347,7 +340,7 @@ export default function ProductListing({
                 <img src={img} alt={`Generated ${i + 1}`} className="w-full h-full object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-500">
-                  <Image className="w-8 h-8" />
+                  <Image className="w-8 h-8" aria-label="Image placeholder" />
                 </div>
               )}
             </div>

@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, BarChart3, Calendar, Package, RefreshCw } from "lucide-react";
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
+import { TrendingUp, BarChart3, Calendar, RefreshCw } from "lucide-react";
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { historicalSalesData } from "@/lib/data";
 import type { ForecastResult, HistoricalSalesRecord } from "@/types";
-
-interface Props {}
 
 export default function SalesForecast() {
   const [product, setProduct] = useState({
