@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LayoutDashboard, ShoppingBag, Sparkles, Users, Package, Search, Database, BarChart3, Store, TrendingUp, ChevronRight, ChevronDown, Sliders, Settings, LogOut } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "管理后台 | NEXUS 跨境电商",
-  description: "NEXUS 电商管理后台，数据概览、AI智能选品、商品管理、访客分析",
-};
 
 const navItems = [
   { href: "/admin", label: "数据概览", icon: LayoutDashboard },

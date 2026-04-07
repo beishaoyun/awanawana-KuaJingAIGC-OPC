@@ -14,7 +14,7 @@ export default function SalesForecast() {
     price: 35,
     targetMonth: "2026-06"
   });
-  
+
   const [result, setResult] = useState<ForecastResult | null>(null);
   const [isForecasting, setIsForecasting] = useState(false);
 
@@ -23,9 +23,9 @@ export default function SalesForecast() {
       alert("请输入商品名称");
       return;
     }
-    
+
     setIsForecasting(true);
-    
+
     setTimeout(() => {
       // 获取历史数据
       const categoryHistory = historicalSalesData.filter((h: HistoricalSalesRecord) => h.category === product.category);
@@ -38,12 +38,12 @@ export default function SalesForecast() {
 
       // 模拟预测数据
       const forecastData = [
-        { month: "1月", 预测销量: Math.floor(avgSales * 0.8) },
-        { month: "2月", 预测销量: Math.floor(avgSales * 0.9) },
-        { month: "3月", 预测销量: Math.floor(avgSales) },
-        { month: "4月", 预测销量: Math.floor(avgSales * 1.1) },
-        { month: "5月", 预测销量: Math.floor(avgSales * 1.2) },
-        { month: "6月", 预测销量: Math.floor(avgSales * 1.4) },
+        { month: "1 月", predictedSales: Math.floor(avgSales * 0.8) },
+        { month: "2 月", predictedSales: Math.floor(avgSales * 0.9) },
+        { month: "3 月", predictedSales: Math.floor(avgSales) },
+        { month: "4 月", predictedSales: Math.floor(avgSales * 1.1) },
+        { month: "5 月", predictedSales: Math.floor(avgSales * 1.2) },
+        { month: "6 月", predictedSales: Math.floor(avgSales * 1.4) },
       ];
 
       setResult({
@@ -64,7 +64,7 @@ export default function SalesForecast() {
           { name: "价格定位", impact: "+5%", positive: true },
         ]
       });
-      
+
       setIsForecasting(false);
     }, 2000);
   };
@@ -77,28 +77,28 @@ export default function SalesForecast() {
         animate={{ opacity: 1, y: 0 }}
       >
         <h2 className="text-2xl font-bold mb-2">销量预测</h2>
-        <p className="text-gray-400">基于多维度算法预测未来6个月销量趋势</p>
+        <p className="text-gray-400">基于多维度算法预测未来 6 个月销量趋势</p>
       </motion.div>
 
-      {/* Input Form */}
+      {/* Form */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
         className="bg-card rounded-2xl p-6 border border-border"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+          <div className="lg:col-span-2">
             <label className="block text-sm text-gray-400 mb-2">商品名称</label>
             <input
               type="text"
               value={product.name}
               onChange={(e) => setProduct({ ...product, name: e.target.value })}
-              placeholder="输入商品名称"
+              placeholder="例如：Oversized Hoodie"
               className="w-full bg-background border border-border rounded-xl py-3 px-4 focus:border-primary focus:outline-none"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm text-gray-400 mb-2">商品分类</label>
             <select
@@ -110,20 +110,10 @@ export default function SalesForecast() {
               <option>T-Shirts</option>
               <option>Pants</option>
               <option>Jackets</option>
-              <option>Sweaters</option>
+              <option>Leggings</option>
             </select>
           </div>
-          
-          <div>
-            <label className="block text-sm text-gray-400 mb-2">售价 ($)</label>
-            <input
-              type="number"
-              value={product.price}
-              onChange={(e) => setProduct({ ...product, price: Number(e.target.value) })}
-              className="w-full bg-background border border-border rounded-xl py-3 px-4 focus:border-primary focus:outline-none"
-            />
-          </div>
-          
+
           <div>
             <label className="block text-sm text-gray-400 mb-2">目标月份</label>
             <input
@@ -133,17 +123,27 @@ export default function SalesForecast() {
               className="w-full bg-background border border-border rounded-xl py-3 px-4 focus:border-primary focus:outline-none"
             />
           </div>
+
+          <div>
+            <label className="block text-sm text-gray-400 mb-2">售价 ($)</label>
+            <input
+              type="number"
+              value={product.price}
+              onChange={(e) => setProduct({ ...product, price: parseInt(e.target.value) || 0 })}
+              className="w-full bg-background border border-border rounded-xl py-3 px-4 focus:border-primary focus:outline-none"
+            />
+          </div>
         </div>
-        
+
         <button
           onClick={handleForecast}
           disabled={isForecasting || !product.name.trim()}
-          className="mt-4 w-full bg-primary hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2"
+          className="w-full bg-primary hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2"
         >
           {isForecasting ? (
             <>
               <RefreshCw className="w-5 h-5 animate-spin" />
-              AI 预测中...
+              正在预测中...
             </>
           ) : (
             <>
@@ -166,34 +166,34 @@ export default function SalesForecast() {
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-2 mb-2">
                 <Calendar className="w-5 h-5 text-primary" />
-                <span className="text-gray-400">第1个月</span>
+                <span className="text-gray-400">第 1 个月</span>
               </div>
-              <div className="text-3xl font-bold">${result.gmvForecast.month1.toLocaleString()}</div>
+              <div className="text-3xl font-bold">${result.gmvForecast?.month1.toLocaleString()}</div>
               <div className="text-sm text-gray-400 mt-1">预测 GMV</div>
             </div>
-            
+
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="w-5 h-5 text-secondary" />
-                <span className="text-gray-400">前3个月</span>
+                <span className="text-gray-400">前 3 个月</span>
               </div>
-              <div className="text-3xl font-bold">${result.gmvForecast.month3.toLocaleString()}</div>
+              <div className="text-3xl font-bold">${result.gmvForecast?.month3.toLocaleString()}</div>
               <div className="text-sm text-gray-400 mt-1">预测 GMV</div>
             </div>
-            
+
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-2 mb-2">
                 <BarChart3 className="w-5 h-5 text-accent" />
-                <span className="text-gray-400">前6个月</span>
+                <span className="text-gray-400">前 6 个月</span>
               </div>
-              <div className="text-3xl font-bold">${result.gmvForecast.month6.toLocaleString()}</div>
+              <div className="text-3xl font-bold">${result.gmvForecast?.month6.toLocaleString()}</div>
               <div className="text-sm text-gray-400 mt-1">预测 GMV</div>
             </div>
           </div>
 
           {/* Forecast Chart */}
           <div className="bg-card rounded-2xl p-6 border border-border">
-            <h3 className="text-lg font-semibold mb-6">6个月销量预测趋势</h3>
+            <h3 className="text-lg font-semibold mb-6">6 个月销量预测趋势</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={result.forecastData}>
@@ -211,11 +211,11 @@ export default function SalesForecast() {
                       border: "1px solid #2a2a2a",
                       borderRadius: "8px",
                     }}
-                    formatter={(value: number) => [value.toLocaleString(), "预测销量"]}
+                    formatter={(value: any) => [String(value), "预测销量"]}
                   />
                   <Area
                     type="monotone"
-                    dataKey="预测销量"
+                    dataKey="predictedSales"
                     stroke="#6366f1"
                     strokeWidth={2}
                     fill="url(#forecastGradient)"
@@ -227,68 +227,43 @@ export default function SalesForecast() {
 
           {/* Factors */}
           <div className="bg-card rounded-2xl p-6 border border-border">
-            <h3 className="text-lg font-semibold mb-4">预测因素分析</h3>
+            <h3 className="text-lg font-semibold mb-4">预测因子影响</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {result.factors.map((factor, i: number) => (
+              {result.factors?.map((factor) => (
                 <div
-                  key={i}
+                  key={factor.name}
                   className={`p-4 rounded-xl border ${
-                    factor.positive ? "border-green-500/30 bg-green-500/10" : "border-red-500/30 bg-red-500/10"
+                    factor.positive
+                      ? "border-green-500/30 bg-green-500/10"
+                      : "border-red-500/30 bg-red-500/10"
                   }`}
                 >
                   <div className="text-sm text-gray-400 mb-1">{factor.name}</div>
-                  <div className={`text-xl font-bold ${factor.positive ? "text-green-400" : "text-red-400"}`}>
+                  <div className={`text-lg font-semibold ${
+                    factor.positive ? "text-green-400" : "text-red-400"
+                  }`}>
                     {factor.impact}
                   </div>
                 </div>
               ))}
             </div>
-            
-            <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl">
-              <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="w-5 h-5 text-blue-400" />
-                <span className="font-medium">预测置信度</span>
-              </div>
-              <div className="text-2xl font-bold">{result.confidence}%</div>
-              <p className="text-sm text-gray-400 mt-1">
-                基于历史数据、市场趋势和竞品分析的 综合预测结果
-              </p>
-            </div>
           </div>
-        </motion.div>
-      )}
 
-      {/* Info */}
-      {!result && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-card rounded-2xl p-6 border border-border"
-        >
-          <h3 className="text-lg font-semibold mb-4">预测算法说明</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-medium mb-2 text-primary">多维度预测模型</h4>
-              <ul className="text-sm text-gray-400 space-y-2">
-                <li>• 历史销售数据分析 (权重 25%)</li>
-                <li>• 友商数据对标 (权重 20%)</li>
-                <li>• 行业趋势分析 (权重 20%)</li>
-                <li>• 季节性因素 (权重 15%)</li>
-                <li>• 价格敏感度 (权重 10%)</li>
-                <li>• 社交媒体热度 (权重 10%)</li>
-              </ul>
+          {/* Confidence & Summary */}
+          <div className="bg-card rounded-2xl p-6 border border-border">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold">预测置信度</h3>
+              <div className="text-2xl font-bold text-primary">{result.confidence}%</div>
             </div>
-            <div>
-              <h4 className="font-medium mb-2 text-secondary">数据来源</h4>
-              <ul className="text-sm text-gray-400 space-y-2">
-                <li>• 平台历史销售数据</li>
-                <li>• Amazon / TikTok 关键词</li>
-                <li>• 竞品店铺公开数据</li>
-                <li>• 行业报告统计</li>
-                <li>• 社交媒体趋势</li>
-              </ul>
+            <div className="h-3 bg-background rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                style={{ width: `${result.confidence}%` }}
+              />
             </div>
+            <p className="text-sm text-gray-400 mt-4">
+              基于历史数据、市场趋势和季节性因素综合分析，置信度{result.confidence}%表示预测结果的可靠程度。
+            </p>
           </div>
         </motion.div>
       )}

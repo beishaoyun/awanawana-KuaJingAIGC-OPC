@@ -92,7 +92,7 @@ function AIToolsContent() {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as TabType)}
+                onClick={() => setActiveTab(tab.id as AITabType)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all ${
                   activeTab === tab.id
                     ? "bg-primary text-white"

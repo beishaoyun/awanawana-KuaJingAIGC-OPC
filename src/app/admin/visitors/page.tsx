@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Users, TrendingUp, ShoppingBag, MapPin, Smartphone, Clock, DollarSign, Globe, User, Activity } from "lucide-react";
+import { Users, TrendingUp, ShoppingBag, MapPin, Smartphone, Clock, DollarSign, Globe, User, Activity, Eye } from "lucide-react";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
 
 // 访客数据

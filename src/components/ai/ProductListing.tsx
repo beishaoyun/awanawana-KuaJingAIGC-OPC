@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FileText, Image, Copy, Check, Sparkles, Zap } from "lucide-react";
 import { platformKeywords } from "@/lib/data";
+import type { KeywordData } from "@/types";
 
 interface Props {
   initialProduct?: string;

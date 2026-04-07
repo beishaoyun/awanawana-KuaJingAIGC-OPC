@@ -25,7 +25,8 @@ export default function ProductSelection({ onNavigate }: ProductSelectionProps) 
     
     // 模拟 AI 分析
     setTimeout(() => {
-      const mockResults = aiProductSuggestions.map((product) => ({
+      const mockResults = aiProductSuggestions.map((product, index) => ({
+        id: `result-${index}`,
         ...product,
         marketScore: Math.floor(Math.random() * 30) + 70,
         competitionScore: Math.floor(Math.random() * 40) + 30,
@@ -171,10 +172,10 @@ export default function ProductSelection({ onNavigate }: ProductSelectionProps) 
                 <p className="text-sm text-gray-300 mb-4">{product.reason}</p>
                 
                 <button
-                  onClick={() => onNavigate("product-listing", { 
-                    product: product.name, 
-                    reason: product.reason,
-                    category: product.category
+                  onClick={() => onNavigate("product-listing", {
+                    product: product.name,
+                    reason: product.reason || "",
+                    category: product.category || ""
                   })}
                   className="w-full bg-primary/20 hover:bg-primary/30 text-primary py-3 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
                 >
@@ -212,7 +213,7 @@ export default function ProductSelection({ onNavigate }: ProductSelectionProps) 
               {platformKeywords.amazon.slice(0, 5).map((k: KeywordData, i: number) => (
                 <div key={i} className="flex items-center justify-between text-sm">
                   <span className="text-gray-300">{k.keyword}</span>
-                  <span className="text-primary">{k.volume.toLocaleString()}</span>
+                  <span className="text-primary">{(k.volume || 0).toLocaleString()}</span>
                 </div>
               ))}
             </div>
@@ -224,7 +225,7 @@ export default function ProductSelection({ onNavigate }: ProductSelectionProps) 
               {platformKeywords.tiktok.slice(0, 5).map((k: KeywordData, i: number) => (
                 <div key={i} className="flex items-center justify-between text-sm">
                   <span className="text-gray-300">{k.keyword}</span>
-                  <span className="text-secondary">#{k.hashtag}</span>
+                  <span className="text-secondary">#{k.keyword}</span>
                 </div>
               ))}
             </div>
